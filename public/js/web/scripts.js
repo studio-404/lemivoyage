@@ -15,7 +15,6 @@ function isMobile(){
 }
 
 function hideIt(section){
-	console.log(section);
 	for (var i = section.length - 1; i >= 0; i--) {
 		$("#"+section[i]).hide();
 	};
@@ -138,7 +137,6 @@ $(document).on("click", ".removefavourite", function(){
 			location.reload();
 		}else{
 			var text = obj.Error.Text;
-			console.log(text);
 		}
 	});
 });
@@ -572,7 +570,7 @@ $(document).ready(function(){
 				}
 				input += "<section class=\"form-group ChildAge\">";
 				input += "<label class=\"col-2 col-form-label\">"+i+". "+childageText+"</label>";
-				input += "<input type=\"number\" name=\"child[]\" data-pair=\"p"+i+"\" class=\"form-control\" max=\"12\" min=\"4\" value=\"4\" />";
+				input += "<input type=\"number\" name=\"child[]\" data-pair=\"p"+i+"\" class=\"form-control childnerList\" max=\"12\" min=\"4\" value=\"4\" />";
 				input += "</section>";
 
 				$(".childernsAges").append(input);
@@ -626,7 +624,7 @@ $(document).ready(function(){
 			if(obj.Success.Code==1){	
 				location.href = obj.Success.GoToUrl;		
 			}else{
-				console.log(obj.Error.Text);
+				//console.log(obj.Error.Text);
 			}
 		});
 		return false;

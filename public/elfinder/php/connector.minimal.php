@@ -1,6 +1,8 @@
 <?php
+ini_set('session.cookie_httponly', 1);
+error_reporting(0); 
+session_name("lemivoyage");
 session_start();
-error_reporting(0); // Set E_ALL for debuging
 
 if(!isset($_SESSION["lemivoyage_username"]))
 {

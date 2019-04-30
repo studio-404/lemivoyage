@@ -14,13 +14,13 @@ class send
 			$_SESSION["SENDED_EMAILS"] = $_SESSION["SENDED_EMAILS"] + 1;
 		}
 
-		if(isset($_SESSION["SENDED_EMAILS"]) && $_SESSION["SENDED_EMAILS"]>=10){
+		if(isset($_SESSION["SENDED_EMAILS"]) && $_SESSION["SENDED_EMAILS"]>=100){
 			return false;
 		}
 		
 		$out = false;	
 		$mail = new \PHPMailer;
-		//$mail->SMTPDebug = 3; 
+		// $mail->SMTPDebug = 2; 
 
 		$mail->isSMTP(); 
 		$mail->CharSet = 'UTF-8';
@@ -32,7 +32,14 @@ class send
 		$mail->Port = 587;
 
 		$mail->setFrom(\Config::EMAIL_USERNAME, \Config::EMAIL_NAME);
-		$mail->addAddress($args["sendTo"]); 
+		if(is_array($args["sendTo"])){
+			foreach ($args["sendTo"] as $v) {
+				$mail->addAddress($v); 
+			}
+		}else{
+			$mail->addAddress($args["sendTo"]); 	
+		}
+		
 		$mail->addReplyTo(\Config::EMAIL_USERNAME);
 		// $mail->addCC('cc@example.com');
 		// $mail->addBCC('bcc@example.com');

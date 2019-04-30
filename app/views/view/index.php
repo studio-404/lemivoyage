@@ -36,7 +36,7 @@ $photo = (!empty($data["productGetter"]["coverphoto"])) ? $data["productGetter"]
 		<section class="row">
 			<section class="col-lg-8 left-details">
 				<ul class="tour-ul">
-					<li>
+					<!-- <li>
 						<i class="fa fa-calendar" aria-hidden="true"></i>
 						<?php 
 						$arrEx = explode(",", $data["productGetter"]["checkinout"]);
@@ -48,7 +48,7 @@ $photo = (!empty($data["productGetter"]["coverphoto"])) ? $data["productGetter"]
 							echo $arrEx[0];
 						}
 						?></span>
-					</li>
+					</li> -->
 					<li>
 						<i class="fa fa-clock-o" aria-hidden="true"></i>
 						<span><?=$data["productGetter"]["days_nights"]?></span>
@@ -277,8 +277,7 @@ $photo = (!empty($data["productGetter"]["coverphoto"])) ? $data["productGetter"]
 						var currentDay = new Date();
 						currentDay.setDate(currentDay.getDate()+<?=Config::DATEPICKER_DAYS?>);
 						var nextDay = currentDay.getDate()+"/"+(currentDay.getMonth()+1)+"/"+currentDay.getFullYear();
-						console.log(nextDay);
-
+						
 						$(".date1").datepicker({
 							format: 'dd/mm/yyyy', 
 							startDate:nextDay,
@@ -297,87 +296,14 @@ $photo = (!empty($data["productGetter"]["coverphoto"])) ? $data["productGetter"]
 					</script>
 
 
-
-					<!-- <section class="form-group" style="margin-bottom: 10px;">
-						<label class="col-form-label"><?=$l->translate("arrivaldeparture")?></label>
-					    <select class="selectpicker arriveDepartureSelector">
-					    	<?php 
-					    	// foreach ($data["productdates"] as $value) {
-					    	// 	echo sprintf(
-					    	// 		"<option value=\"%s - %s\">%s - %s</option>",
-					    	// 		date("d/m/Y", $value["checkin"]),
-					    	// 		date("d/m/Y", $value["checkout"]),
-					    	// 		date("d/m/Y", $value["checkin"]),
-					    	// 		date("d/m/Y", $value["checkout"])
-					    	// 	);
-					    	// }
-					    	?>
-					    </select>
-					    <script type="text/javascript">
-					    	$('.arriveDepartureSelector').on('changed.bs.select', function (e) {
-					    		$("#tourCheckinCheckout").html(e.target.value);
-				            	$("#arriveDepartureSelectorValue").val(e.target.value);
-				            });
-					    </script>
-				    </section> -->
-
-					<?php 
-					// echo print_r($data["productGetter"]);
-					$explodeSelectedServics = explode(",", $data["productGetter"]["services"]);
-					$sectionID = 0;
-					$secID = array();
-					foreach($data["services"] as $service) :
-						if(!in_array($service["idx"], $explodeSelectedServics)){
-							continue;
-						}
-					?>
-
-						<section class="service-checkbox" id="section<?=$sectionID?>">
-							<section class="main-checkbox">
-								<i class="<?=strip_tags($service["description"])?>" aria-hidden="true"></i>
-								<span><?=$service["title"]?></span>
-								<section class="clearer"></section>
-							</section>
-							<section class="sub-checkbox" id="sub<?=$service["idx"]?>">
-								
-								<?php 
-								foreach ($data["sub_services"] as $sub) : 
-									if($sub["service_idx"]!=$service["idx"]){
-										continue;
-									}
-
-									if((float)$sub["price"]<=0){
-										$secID[] = "section".$sectionID;
-										$off = "on";
-									}else{
-										$off = "off";
-									}
-									// $off = ((float)$sub["price"]<=0) ? "on" : "off";
-								?>
-									<section class="item">
-										<span><?=$sub["title"]?> - <em class="price"><?=(float)$sub["price"]?> &euro;</em></span>
-										<i class="fa fa-toggle-<?=$off?> checkbox-sub-input" data-subservid="<?=$sub["id"]?>" data-classname="<?=htmlentities($service["classname"])?>" data-turn="<?=$off?>" data-serviceid="<?=(int)$service["idx"]?>" data-sub="sub<?=(int)$service["idx"]?>" data-price="<?=(float)$sub["price"]?>" aria-hidden="true"></i>
-										<section class="clearer"></section>
-									</section>
-								<?php endforeach; ?>
-
-							</section>
-						</section>
-
-					<?php 
-					$sectionID++;
-					endforeach; 
-					?>
-					<script type="text/javascript">
-					hideIt(<?=json_encode($secID)?>);
-					</script>
+					
 
 					<?php 
 					if($data["productGetter"]["tourist_points"]=="dynamic"){ 
 					?>
 						<section class="form-group">
 						  <label class="col-2 col-form-label"><?=$l->translate("adults")?></label>
-						  <input class="form-control" type="number" id="adults" autocomplete="off" value="1" min="1" />
+						  <input class="form-control adults" type="number" id="adults" autocomplete="off" value="1" min="1" />
 						</section>
 
 						<section class="form-group">
@@ -387,7 +313,7 @@ $photo = (!empty($data["productGetter"]["coverphoto"])) ? $data["productGetter"]
 					<?php }else{ ?>
 						<section class="form-group">
 						  <label class="col-2 col-form-label"><?=$l->translate("adults")?></label>
-						  <input class="form-control" type="number" autocomplete="off" value="<?=(int)$data["productGetter"]["tourist_points"]?>" disabled="disabled" />
+						  <input class="form-control adults" type="number" autocomplete="off" value="<?=(int)$data["productGetter"]["tourist_points"]?>" disabled="disabled" />
 						</section>
 						<input class="form-control" type="hidden" id="children" autocomplete="off" value="0" min="0" />
 					<?php }?>
@@ -479,6 +405,87 @@ function initMap() {
     }
     map.fitBounds(bounds);
 }
+
+(function(){
+	if(typeof document.getElementsByClassName("bookNowSubmit")[0] !== "undefined"){
+		document.getElementsByClassName("bookNowSubmit")[0].addEventListener("click", (e) => {
+			var lang = document.getElementById("lang");
+			lang = (typeof lang !== "undefined") ? lang.value : "";
+
+			var booktoken = document.getElementById("booktoken");
+			booktoken = (typeof booktoken !== "undefined") ? booktoken.value : "";
+
+			var bookid = document.getElementById("bookid");
+			bookid = (typeof bookid !== "undefined") ? bookid.value : "";
+
+			var firstname = document.getElementsByClassName("firstname")[0];
+			firstname = (typeof firstname !== "undefined") ? firstname.value : "";
+
+			var lastname = document.getElementsByClassName("lastname")[0];
+			lastname = (typeof lastname !== "undefined") ? lastname.value : "";
+
+			var email = document.getElementsByClassName("email")[0];
+			email = (typeof email !== "undefined") ? email.value : "";
+
+			var phone = document.getElementsByClassName("phone")[0];
+			phone = (typeof phone !== "undefined") ? phone.value : "";
+
+			var dateArrival = document.getElementsByClassName("dateArrival")[0];
+			dateArrival = (typeof dateArrival !== "undefined") ? dateArrival.value : "";
+
+			var dateDeparture = document.getElementsByClassName("dateArrival")[0];
+			dateDeparture = (typeof dateDeparture !== "undefined") ? dateDeparture.value : "";
+
+			var adults = document.getElementsByClassName("adults")[0];
+			adults = (typeof adults !== "undefined") ? adults.value : "";
+
+			var childnerList = document.getElementsByClassName("childnerList");
+			var childsAgesList = new Array();
+			for(var i = 0; i < childnerList.length; i++){
+				childsAgesList.push(childnerList[i].value);
+			}
+
+
+			var xhttp = new XMLHttpRequest();
+			xhttp.open("POST", Config.ajax + "/bookSubmit", true);
+			xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+			xhttp.send(
+				"booktoken="+booktoken+
+				"&lang="+lang+
+				"&bookid="+bookid+
+				"&firstname="+firstname+
+				"&lastname="+lastname+
+				"&phone="+phone+
+				"&email="+email+
+				"&dateArrival="+dateArrival+
+				"&dateDeparture="+dateDeparture+
+				"&adults="+adults+
+				"&childsAgesList="+childsAgesList.join()
+			);
+
+			xhttp.onreadystatechange = function() {
+				if (this.readyState == 4) {
+					var out = {
+						status: this.status,
+						response: JSON.parse(this.responseText)
+					};
+
+					var title = out.response.Error.Title;
+					var text = out.response.Error.Text;
+					$(".theTitle").html(title);
+					$(".theMessage").html(text);
+					$(".modal").modal("show");
+
+					if(out.response.Error.Code==0){
+						setTimeout(function(){
+							location.reload();
+						}, 1500);
+					}
+				}
+			};
+		});
+	};
+})();
 </script>
 <!-- https://console.developers.google.com -->
  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDuNVK1o6mUkHGOO44eULUbWzLnkXDkUW4&amp;callback=initMap"
