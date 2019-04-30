@@ -52,10 +52,6 @@ class payments
 	{
 		$fetch = array();
 		$select = "SELECT 
-		(SELECT `users_website`.`firstname` FROM `users_website` WHERE `users_website`.`email`=`payments`.`username` AND `users_website`.`status`!=1) as firstname, 
-		(SELECT `users_website`.`lastname` FROM `users_website` WHERE `users_website`.`email`=`payments`.`username` AND `users_website`.`status`!=1) as lastname, 
-		(SELECT `users_website`.`phone` FROM `users_website` WHERE `users_website`.`email`=`payments`.`username` AND `users_website`.`status`!=1) as phone, 
-		(SELECT `users_website`.`gender` FROM `users_website` WHERE `users_website`.`email`=`payments`.`username` AND `users_website`.`status`!=1) as gender, 
 		(SELECT `products`.`title` FROM `products` WHERE `products`.`idx`=`payments`.`tour_id` AND `products`.`lang`=:lang AND `products`.`status`!=1) as product_title, 
 		`payments`.* 
 		FROM 
@@ -149,6 +145,10 @@ class payments
 		`tbc_trans_id`=:tbc_trans_id, 
 		`tour_id`=:tour_id, 
 		`checkin_checkout`=:checkinCheckout, 
+		`firstname`=:firstname, 
+		`lastname`=:lastname, 
+		`phone`=:phone, 
+		`email`=:email, 
 		`tour_services`=:tour_services, 
 		`adults`=:adults, 
 		`children`=:children, 
@@ -162,9 +162,13 @@ class payments
 			":ip_address"=>$args["ip_address"],
 			":os"=>$args["os"],
 			":browser"=>$args["browser"],
-			":username"=>$_SESSION[Config::SESSION_PREFIX."web_username"],
-			":tbc_trans_id"=>urlencode($args["tbc_trans_id"]),
+			":username"=>"",
+			":tbc_trans_id"=>"",
 			":tour_id"=>$args["tour_id"],
+			":firstname"=>$args["firstname"],
+			":lastname"=>$args["lastname"],
+			":phone"=>$args["phone"],
+			":email"=>$args["email"],
 			":checkinCheckout"=>$args["checkinCheckout"],
 			":tour_services"=>$args["tour_services"],
 			":adults"=>$args["adults"],

@@ -39,11 +39,8 @@
 				<thead>
 					<tr>
 						<th data-field="date">თარღი</th>
-						<th data-field="org">ID</th>
-						<th data-field="email">ტრანზ. ID</th>
-						<th data-field="email">ტურის ID</th>
-						<th data-field="name">მომ. ელ-ფოსტა</th>					
-						<th data-field="status">სტატუსი</th>					
+						<th data-field="date">სახელი გვარი</th>
+						<th data-field="email">ტურის ID</th>			
 						<th data-field="action">მოქმედება</th>
 					</tr>
 				</thead>

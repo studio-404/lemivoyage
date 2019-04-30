@@ -3,16 +3,25 @@
 class bookSubmit 
 {
 	public $out; 
+	public $user_ip; 
+	public $user_os; 
+	public $user_browser; 
 
 	public function index(){
 		require_once 'app/core/Config.php';
 		require_once 'app/functions/request.php';
 		require_once 'app/functions/string.php';
 		require_once 'app/functions/send.php';
+		require_once 'app/functions/server.php'; 
 		require_once 'app/functions/l.php';
 
 		$l = new functions\l();
 		$lang = functions\request::index("POST","lang");
+
+		$server = new functions\server();
+		$this->user_ip = $server->ip();
+		$this->user_os = $server->os();
+		$this->user_browser = $server->browser();
 
 		$this->out = array(
 			"Error" => array(
@@ -77,43 +86,47 @@ class bookSubmit
 		}else{
 			$send = new functions\send(); 
 			$body = sprintf(
-				"<strong>Firstname Lastname</strong>: %s %s<br />", 
+				"<strong>%s %s</strong>: %s %s<br />", 
+				ucfirst($l->translate("firstname", $lang)),
+				ucfirst($l->translate("lastname", $lang)),
 				$firstname,
 				$lastname
 			);
 			
 			$body .= sprintf(
-				"<strong>Phone</strong>: %s<br />", 
+				"<strong>%s</strong>: %s<br />", 
+				ucfirst($l->translate("phone", $lang)),
 				$phone
 			);
 
 			$body .= sprintf(
-				"<strong>Email</strong>: %s<br />", 
+				"<strong>%s</strong>: %s<br />", 
+				ucfirst($l->translate("email", $lang)),
 				$email
 			);
 
 			$body .= sprintf(
-				"<strong>Date Arrival</strong>: %s<br />", 
+				"<strong>%s</strong>: %s<br />", 
+				ucfirst($l->translate("arrival", $lang)),
 				$dateArrival
 			);
 
 			$body .= sprintf(
-				"<strong>Adults</strong>: %s<br />", 
+				"<strong>%s</strong>: %s<br />", 
+				ucfirst($l->translate("adults", $lang)),
 				$adults
 			);	
 
 			$body .= sprintf(
-				"<strong>Children From 4 - 12</strong>: %s<br />", 
+				"<strong>%s</strong>: %s<br />", 
+				ucfirst($l->translate("children", $lang)),
 				$childsAgesList
 			);	
 
 			$body .= sprintf(
-				"<strong>Tour Link</strong>: <a href=\"https://lemivoyage.com/en/view/the-tour/?id=%s\">Visit booked tour</a><br />", 
-				$bookid
-			);
-
-			$body2 = sprintf(
-				"<strong>We will contact you as soon as possible..</strong>"
+				"<a href=\"https://lemivoyage.com/en/view/the-tour/?id=%s\">%s</a><br />", 
+				$bookid,
+				ucfirst($l->translate("visitbookedtour", $lang))
 			);			
 
 			$send->index(array(
@@ -121,6 +134,28 @@ class bookSubmit
 				"subject"=>"Booking",
 				"body"=>$body
 			));
+
+			$payments = new Database("payments", array(
+				"method"=>"insert", 
+				"ip_address"=>$this->user_ip,
+				"os"=>$this->user_os,
+				"browser"=>$this->user_browser,
+				"tbc_trans_id"=>"",
+				"tour_id"=>$bookid,
+				"firstname"=>$firstname,
+				"lastname"=>$lastname,
+				"phone"=>$phone,
+				"email"=>$email,
+				"checkinCheckout"=>$dateArrival,
+				"tour_services"=>"",
+				"adults"=>$adults,
+				"children"=>"",
+				"children_ages"=>$childsAgesList,
+				"total_price"=>0,
+				"payment_status"=>1,
+				"status"=>0
+			));
+
 
 
 			$this->out = array(
