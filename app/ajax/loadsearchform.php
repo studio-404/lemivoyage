@@ -76,27 +76,27 @@ class loadsearchform
 		$html .= "</select>";
 
 
-		$html .= "<section class=\"dateBox\">";
-		$html .= sprintf(
-			"<input type=\"text\" class=\"form-control date pop-arrival\" value=\"\" placeholder=\"%s\" readonly=\"readonly\" />",
-			$l->translate("arrival", $lang)
-		);
-		$html .= "</section>";
+		// $html .= "<section class=\"dateBox\">";
+		// $html .= sprintf(
+		// 	"<input type=\"text\" class=\"form-control date pop-arrival\" value=\"\" placeholder=\"%s\" readonly=\"readonly\" />",
+		// 	$l->translate("arrival", $lang)
+		// );
+		// $html .= "</section>";
 	
-		$html .= "<section class=\"dateBox\">";
-		$html .= sprintf(
-			"<input type=\"text\" class=\"form-control date pop-departure\" value=\"\" placeholder=\"%s\" readonly=\"readonly\" />",
-			$l->translate("departure", $lang)
-		);
-		$html .= "</section>";
+		// $html .= "<section class=\"dateBox\">";
+		// $html .= sprintf(
+		// 	"<input type=\"text\" class=\"form-control date pop-departure\" value=\"\" placeholder=\"%s\" readonly=\"readonly\" />",
+		// 	$l->translate("departure", $lang)
+		// );
+		// $html .= "</section>";
 
 
-		$html .= "<div class=\"input-group\">";
- 		$html .= sprintf(
- 			"<input type=\"number\" class=\"form-control pop-guests\" placeholder=\"%s\" min=\"0\" />", 
- 			$l->translate("guests", $lang)
- 		);
-		$html .= "</div>"; 
+		// $html .= "<div class=\"input-group\">";
+ 	// 	$html .= sprintf(
+ 	// 		"<input type=\"number\" class=\"form-control pop-guests\" placeholder=\"%s\" min=\"0\" />", 
+ 	// 		$l->translate("guests", $lang)
+ 	// 	);
+		// $html .= "</div>"; 
 
 		$html .= sprintf(
 			"<button class=\"popupSearchbutton\">%s</button>",

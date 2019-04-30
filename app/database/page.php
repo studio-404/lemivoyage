@@ -99,7 +99,7 @@ class page
 		if(file_exists($json)){
 			$fetch = @file_get_contents($json); 
 		}else{
-			$select = "SELECT * FROM `navigation` WHERE `cid`=:cid AND `lang`=:lang AND `status`!=:one ORDER BY `position` ASC";
+			$select = "SELECT * FROM `navigation` WHERE `cid`=:cid AND `lang`=:lang AND `visibility`!=:one AND `status`!=:one ORDER BY `position` ASC";
 			$prepare = $this->conn->prepare($select);
 			$prepare->execute(array(
 				":cid"=>$cid, 

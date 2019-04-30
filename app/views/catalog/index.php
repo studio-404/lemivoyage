@@ -46,24 +46,24 @@ $photo = (isset($data["pageData"]["photo"])) ? Config::WEBSITE_.$data["pageData"
 						<?=$data["tourtypesOptions"]?>
 					</select>
 
-					<section class="dateBox">
+					<!-- <section class="dateBox">
 						<input type="text" class="form-control date arrival catalogpagesearch_arrival" name="arrival" value="" placeholder="<?=$l->translate("arrival")?>" readonly="readonly" />
 					</section>
 
 					<section class="dateBox">
 						<input type="text" class="form-control date departure catalogpagesearch_departure" name="departure" value="" placeholder="<?=$l->translate("departure")?>" readonly="readonly" />
-					</section>
+					</section> -->
 
 					<?php 
-					if(!isset($data["tourMaxMin"]["min"]) || !isset($data["tourMaxMin"]["max"])){
-						$price = "0,0";
-					}else{
-						$price = (functions\request::index("GET", "price")) ? functions\request::index("GET", "price") : $data["tourMaxMin"]["min"].",".$data["tourMaxMin"]["max"];
-					}
-					$price = explode(",", $price);
+					// if(!isset($data["tourMaxMin"]["min"]) || !isset($data["tourMaxMin"]["max"])){
+					// 	$price = "0,0";
+					// }else{
+					// 	$price = (functions\request::index("GET", "price")) ? functions\request::index("GET", "price") : $data["tourMaxMin"]["min"].",".$data["tourMaxMin"]["max"];
+					// }
+					// $price = explode(",", $price);
 
 					?>
-
+<!-- 
 					<section class="range-slider">
 						<label><?=$l->translate("pricerange")?></label><section class="clearer"></section>
 						<input id="range" class="catalogpagesearch_range" type="text" name="price" value="<?=(int)$price[0]?>" />
@@ -71,7 +71,8 @@ $photo = (isset($data["pageData"]["photo"])) ? Config::WEBSITE_.$data["pageData"
 							<label id="minValue"><?=(isset($price[0])) ? (int)$price[0] : 0?></label>
 							<label id="maxValue"><?=(isset($price[1])) ? (int)$price[1] : 0?></label>
 						</section>
-					</section>
+					</section> -->
+
 					<section class="clearer"></section>
 
 					<button class="search catalogpagesearch"><?=$l->translate("search")?></button>
@@ -91,43 +92,17 @@ $photo = (isset($data["pageData"]["photo"])) ? Config::WEBSITE_.$data["pageData"
 					// 	autoclose: true
 					// });
 
-					var currentDay = new Date();
-		            currentDay.setDate(currentDay.getDate()+<?=Config::DATEPICKER_DAYS?>);
-		            var nextDay = currentDay.getDate()+"/"+(currentDay.getMonth()+1)+"/"+currentDay.getFullYear();
+					// var currentDay = new Date();
+		   //          currentDay.setDate(currentDay.getDate()+<?=Config::DATEPICKER_DAYS?>);
+		   //          var nextDay = currentDay.getDate()+"/"+(currentDay.getMonth()+1)+"/"+currentDay.getFullYear();
 
-		            $(".date").datepicker({
-		              format: 'dd/mm/yyyy', 
-		              startDate:nextDay,
-		              autoclose: true
-		            });
+		   //          $(".date").datepicker({
+		   //            format: 'dd/mm/yyyy', 
+		   //            startDate:nextDay,
+		   //            autoclose: true
+		   //          });
 
-					/* Range Slider START */
-					var range = document.getElementById('range');
-					<?php 
-					if(functions\request::index("GET", "price")){
-						$price = explode(",", functions\request::index("GET", "price"));
-						// echo functions\request::index("GET", "price");
-						$from = (isset($price[0])) ? (int)$price[0] : 0;
-						$to = (isset($price[1])) ? (int)$price[1] : 0;
-					?>
-					$("#range").slider({ min: <?=(isset($data["tourMaxMin"]["min"])) ? $data["tourMaxMin"]["min"] : 0?>, max: <?=(isset($data["tourMaxMin"]["max"])) ? $data["tourMaxMin"]["max"] : 0?>, value: [<?=$from?>, <?=$to?>], focus: true });
-					<?php
-					}else{
-					?>
-					$("#range").slider({ min: <?=(isset($data["tourMaxMin"]["min"])) ? $data["tourMaxMin"]["min"] : 0?>, max: <?=(isset($data["tourMaxMin"]["max"])) ? $data["tourMaxMin"]["max"] : 0?>, value: [<?=(isset($data["tourMaxMin"]["min"])) ? $data["tourMaxMin"]["min"] : 0?>, <?=(isset($data["tourMaxMin"]["max"])) ? $data["tourMaxMin"]["max"] : 0?>], focus: true });
-					<?php
-					}
-					?>					
-					$(document).on("change", "#range", function(e){
-						var vals = $("#range").get();
-						var v = vals[0].value;
-						var exp = v.split(",");
-						var min = exp[0];
-						var max = exp[1];
-						$("#minValue").text(min);
-						$("#maxValue").text(max);
-					});
-					/* Range Slider END */
+					
 
 					<?php 
 					if(functions\request::index("GET", "destination")):

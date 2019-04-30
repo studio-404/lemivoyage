@@ -78,6 +78,7 @@ class websiteNavigation
 				$subNavigation = new Database('page', array(
 					"method"=>"select", 
 					"cid"=>$val['idx'], 
+					"visibility"=>"showanyway", 
 					"nav_type"=>0, 
 					"lang"=>$val['lang'], 
 					"status"=>0

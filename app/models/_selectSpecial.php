@@ -13,10 +13,10 @@ class _selectSpecial
 
 			if($big){
 				$out .= "<section class=\"scaleBox\">\n";
-				$out .= sprintf(
-					"<section class=\"price\">%s &euro;</section>\n",
-					(int)$big[0]["price"]
-				);
+				// $out .= sprintf(
+				// 	"<section class=\"price\">%s &euro;</section>\n",
+				// 	(int)$big[0]["price"]
+				// );
 				$out .= sprintf(
 					"<a href=\"%s%s/view/%s/?id=%d\" style=\"background-image: url('%s%s/image/loadimage?f=%s%s&w=1400&h=1200')\" alt=\"%s\"></a>\n",
 					Config::WEBSITE,
@@ -53,10 +53,10 @@ class _selectSpecial
 
 			if($smaill1){
 				$out .= "<section class=\"scaleBox posTop\">\n";
-				$out .= sprintf(
-					"<section class=\"price\">%s &euro;</section>\n",
-					$smaill1[0]["price"]
-				);
+				// $out .= sprintf(
+				// 	"<section class=\"price\">%s &euro;</section>\n",
+				// 	$smaill1[0]["price"]
+				// );
 				
 				// $out .= "<a href=\"\" style=\"background-image: url('')\" alt=\"Ilia Lake In Kakheti\"></a>\n";
 				$out .= sprintf(
@@ -94,10 +94,10 @@ class _selectSpecial
 				// echo "</pre>";
 
 				$out .= "<section class=\"scaleBox posBottom\">\n";
-				$out .= sprintf(
-					"<section class=\"price\">%s &euro;</section>\n",
-					$smaill2[0]["price"]
-				);
+				// $out .= sprintf(
+				// 	"<section class=\"price\">%s &euro;</section>\n",
+				// 	$smaill2[0]["price"]
+				// );
 				
 				$out .= sprintf(
 					"<a href=\"%s%s/view/%s/?id=%d\" style=\"background-image: url('%s%s/image/loadimage?f=%s%s&w=800&h=600')\" alt=\"%s\"></a>\n",

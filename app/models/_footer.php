@@ -45,11 +45,13 @@ class _footer
 		
 		$out .= "<ul>\n";
 		foreach ($this->data['footerHelpNav'] as $value) {
+			$url = Config::WEBSITE.strip_output::index($_SESSION['LANG'])."/".strip_output::index($value['slug']);
+			if($value["redirect"]!=""){
+				$url = $value["redirect"];
+			}
 			$out .= sprintf(
-				"<li>\n<a href=\"%s%s/%s\">%s</a></li>\n",
-				Config::WEBSITE,
-				strip_output::index($_SESSION['LANG']),
-				strip_output::index($value['slug']), 
+				"<li>\n<a href=\"%s\">%s</a></li>\n",
+				$url, 
 				strip_output::index($value['title'])
 			);
 
@@ -59,50 +61,69 @@ class _footer
 
 		$out .= "</section>\n";
 
-		
+		$db_contactinfo = new Database("modules", array(
+			"method"=>"selectContactData", 
+			"lang"=>$_SESSION["LANG"]
+		));
+		$fetchContactInfo = $db_contactinfo->getter();
 		$out .= "<section class=\"col-lg-4 item\">\n";
-		$out .= sprintf(
-			"<h3>%s</h3>\n",
-			$l->translate("myaccount")
-		);
-		$out .= "<ul>\n";
-		if(!isset($_SESSION[Config::SESSION_PREFIX."web_username"])){
+		$out .= sprintf("<h3>%s</h3>", $l->translate("contactinfo"));
+
+		$out .= "<ul>";
+		foreach($fetchContactInfo as $value) {
 			$out .= sprintf(
-				"<li><a href=\"#\"  class=\"signIn\" data-boxtitle=\"%s\">%s</a></li>\n",
-				$l->translate("signin"),
-				$l->translate("signin")
-			);
-			$out .= sprintf(
-				"<li><a href=\"#\" class=\"createAccount\" data-boxtitle=\"%s\">%s</a></li>\n",
-				$l->translate("createnewaccount"),
-				$l->translate("createnewaccount")
-			);
-		}else{
-			$out .= sprintf(
-				"<li><a href=\"?view=purchases\">Purchases</a></li>\n"
-			);
-			$out .= sprintf(
-				"<li><a href=\"?view=favourites\">Favourites</a></li>\n"
-			);
-			$out .= sprintf(
-				"<li><a href=\"?view=profile\">Profile</a></li>\n"
-			);
-			$out .= sprintf(
-				"<li><a href=\"?view=changepassword\">Change Password</a></li>\n"
-			);
-			$out .= sprintf(
-				"<li><a href=\"#\" class=\"myaccount-signout\">Sign Out</a></li>\n"
+				"<li><i class=\"%s\" aria-hidden=\"true\"></i> <span style=\"margin-left:15px; font-size:18px; font-family:'BPGNinoMedium';\">%s</span></li>\n",
+				htmlentities($value['classname']),
+				strip_tags($value['description'])
 			);
 		}
-		$out .= "</ul>\n";
+		$out .= "</ul>";
+
 		$out .= "</section>\n";
+
+		// $out .= "<section class=\"col-lg-4 item\">\n";
+		// $out .= sprintf(
+		// 	"<h3>%s</h3>\n",
+		// 	$l->translate("myaccount")
+		// );
+		// $out .= "<ul>\n";
+		// if(!isset($_SESSION[Config::SESSION_PREFIX."web_username"])){
+		// 	$out .= sprintf(
+		// 		"<li><a href=\"#\"  class=\"signIn\" data-boxtitle=\"%s\">%s</a></li>\n",
+		// 		$l->translate("signin"),
+		// 		$l->translate("signin")
+		// 	);
+		// 	$out .= sprintf(
+		// 		"<li><a href=\"#\" class=\"createAccount\" data-boxtitle=\"%s\">%s</a></li>\n",
+		// 		$l->translate("createnewaccount"),
+		// 		$l->translate("createnewaccount")
+		// 	);
+		// }else{
+		// 	$out .= sprintf(
+		// 		"<li><a href=\"?view=purchases\">Purchases</a></li>\n"
+		// 	);
+		// 	$out .= sprintf(
+		// 		"<li><a href=\"?view=favourites\">Favourites</a></li>\n"
+		// 	);
+		// 	$out .= sprintf(
+		// 		"<li><a href=\"?view=profile\">Profile</a></li>\n"
+		// 	);
+		// 	$out .= sprintf(
+		// 		"<li><a href=\"?view=changepassword\">Change Password</a></li>\n"
+		// 	);
+		// 	$out .= sprintf(
+		// 		"<li><a href=\"#\" class=\"myaccount-signout\">Sign Out</a></li>\n"
+		// 	);
+		// }
+		// $out .= "</ul>\n";
+		// $out .= "</section>\n";
 
 
 		$out .= "<section class=\"col-lg-4 item\">\n";
 		$out .= "<ul style=\"margin-top:10px\">\n";
 		// $out .= "<li><span><i class=\"fa fa-paypal\" aria-hidden=\"true\"></i> PayPal</span></li>\n";
 		// $out .= "<li><span><i class=\"fa fa-cc-mastercard\" aria-hidden=\"true\"></i> MC&amp;Visa</span></li>\n";
-		$out .= "<li><img src=\"/public/img/vmc.svg\" alt=\"Visa MasterCard\" width=\"140\" class=\"greyscale\" /></li>\n";
+		$out .= "<li><img src=\"/public/img/logo.svg?v=2\" alt=\"logo\" width=\"140\" class=\"greyscale\" align=\"right\" /></li>\n";
 		$out .= "</ul>\n";
 		$out .= "</section>\n";
 

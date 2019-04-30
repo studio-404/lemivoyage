@@ -25,6 +25,7 @@ class dashboard extends Controller
 		$page2 = new Database('page', array(
 			"method"=>"select",
 			"cid"=>0,
+			"visibility"=>"showanyway", 
 			"nav_type"=>1, 
 			"lang"=>$_SESSION["LANG"],
 			"status"=>0

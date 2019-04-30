@@ -59,22 +59,24 @@ class _top
 		
 		// languages End
 
-		$out .= "<li>\n";
-		$out .= sprintf(
-			"<a href=\"#\" class=\"transitions favourites\" data-boxtitle=\"%s\">\n",
-			$l->translate("message")
-		);
-		$out .= "<i class=\"fa fa-heart-o\" aria-hidden=\"true\"></i>\n";
-		$out .= "</a>\n";
-		$out .= "</li>\n";
-		$out .= "<li>\n";
-		$out .= sprintf(
-			"<a href=\"#\" class=\"transitions mycart\" data-boxtitle=\"%s\">\n",
-			$l->translate("message")
-		);
-		$out .= "<i class=\"fa fa-shopping-cart\" aria-hidden=\"true\"></i>\n";
-		$out .= "</a>\n";
-		$out .= "</li>\n";
+		// $out .= "<li>\n";
+		// $out .= sprintf(
+		// 	"<a href=\"#\" class=\"transitions favourites\" data-boxtitle=\"%s\">\n",
+		// 	$l->translate("message")
+		// );
+		// $out .= "<i class=\"fa fa-heart-o\" aria-hidden=\"true\"></i>\n";
+		// $out .= "</a>\n";
+		// $out .= "</li>\n";
+		
+		// $out .= "<li>\n";
+		// $out .= sprintf(
+		// 	"<a href=\"#\" class=\"transitions mycart\" data-boxtitle=\"%s\">\n",
+		// 	$l->translate("message")
+		// );
+		// $out .= "<i class=\"fa fa-shopping-cart\" aria-hidden=\"true\"></i>\n";
+		// $out .= "</a>\n";
+		// $out .= "</li>\n";
+		
 		$out .= "<li>\n";
 		$out .= sprintf(
 			"<a href=\"#\" class=\"transitions searchPopUp\" data-boxtitle=\"%s\">\n",
@@ -107,19 +109,19 @@ class _top
 		$out .= $this->data["socialNetworksModule"];
 		$out .= "</section>\n";
 
-		if(!isset($_SESSION[Config::SESSION_PREFIX."web_username"])){
-			$out .= sprintf(
-				"<section class=\"signIn transitions\" data-boxtitle=\"%s\">%s</section>\n",
-				$l->translate("signin"),
-				$l->translate("signin")
-			);
-		}else{
-			$out .= sprintf(
-				"<section class=\"myPage transitions\" onclick=\"goto('%s')\">%s</section>\n",
-				Config::WEBSITE.$_SESSION["LANG"]."/myaccount/?view=profile", 
-				$l->translate("mypage")
-			);
-		}
+		// if(!isset($_SESSION[Config::SESSION_PREFIX."web_username"])){
+		// 	$out .= sprintf(
+		// 		"<section class=\"signIn transitions\" data-boxtitle=\"%s\">%s</section>\n",
+		// 		$l->translate("signin"),
+		// 		$l->translate("signin")
+		// 	);
+		// }else{
+		// 	$out .= sprintf(
+		// 		"<section class=\"myPage transitions\" onclick=\"goto('%s')\">%s</section>\n",
+		// 		Config::WEBSITE.$_SESSION["LANG"]."/myaccount/?view=profile", 
+		// 		$l->translate("mypage")
+		// 	);
+		// }
 		$out .= "</section>\n";
 		$out .= "</section>\n";
 		$out .= "</header>\n";

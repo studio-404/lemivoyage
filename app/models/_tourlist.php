@@ -31,17 +31,17 @@ class _tourlist
 				);
 
 				if($value["tourist_points"]=="dynamic"){
-					$out .= sprintf(
-						"<section class=\"price\">%s %s &euro;</section>\n",
-						$l->translate("from"),
-						$value["price"]
-					);
+					// $out .= sprintf(
+					// 	"<section class=\"price\">%s %s &euro;</section>\n",
+					// 	$l->translate("from"),
+					// 	$value["price"]
+					// );
 				}else{
-					$out .= sprintf(
-						"<section class=\"price\">%s &euro; - <i class=\"fa fa-user\" aria-hidden=\"true\"></i> %s</section>\n",
-						$value["price"], 
-						$value["tourist_points"]
-					);
+					// $out .= sprintf(
+					// 	"<section class=\"price\">%s &euro; - <i class=\"fa fa-user\" aria-hidden=\"true\"></i> %s</section>\n",
+					// 	$value["price"], 
+					// 	$value["tourist_points"]
+					// );
 				}
 				$out .= "</section>\n";
 				$out .= "<section class=\"tour-description\">\n";

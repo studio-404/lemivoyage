@@ -54,12 +54,12 @@ echo $data['headertop'];
            <?=$data["tourtypesOptions"]?>
          </select>
 
-         <section class="dateBox">
+         <!-- <section class="dateBox">
             <input type="text" class="form-control date datepickerArrival" value="" placeholder="<?=$l->translate("arrival")?>" readonly="readonly" />
          </section>
          <section class="dateBox">
             <input type="text" class="form-control date datepickerDeparture" value="" placeholder="<?=$l->translate("departure")?>" readonly="readonly" />
-         </section>
+         </section> -->
              
          <script type="text/javascript">
             $('.dest').on('changed.bs.select', function (e) {
@@ -70,20 +70,15 @@ echo $data['headertop'];
                 $(".advantureTypeSelect").val(e.target.value);
             });
 
+            // var currentDay = new Date();
+            // currentDay.setDate(currentDay.getDate()+<?=Config::DATEPICKER_DAYS?>);
+            // var nextDay = currentDay.getDate()+"/"+(currentDay.getMonth()+1)+"/"+currentDay.getFullYear();
+
             // $(".date").datepicker({
-            //    format: 'dd/mm/yyyy', 
-            //    autoclose: true
+            //   format: 'dd/mm/yyyy', 
+            //   startDate:nextDay,
+            //   autoclose: true
             // });
-
-            var currentDay = new Date();
-            currentDay.setDate(currentDay.getDate()+<?=Config::DATEPICKER_DAYS?>);
-            var nextDay = currentDay.getDate()+"/"+(currentDay.getMonth()+1)+"/"+currentDay.getFullYear();
-
-            $(".date").datepicker({
-              format: 'dd/mm/yyyy', 
-              startDate:nextDay,
-              autoclose: true
-            });
 
          </script>
 

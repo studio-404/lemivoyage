@@ -202,25 +202,20 @@ $photo = (!empty($data["productGetter"]["coverphoto"])) ? $data["productGetter"]
 			</section>
 			<section class="col-md-4 right-details">
 				<section class="price-box">
-					<section class="label"><?=$l->translate("price")?></section>
-					<section class="price total-price">
+					<section class="label"><?=$l->translate("booking")?></section>
+					<!-- <section class="price total-price">
 						<span><?=$data["productGetter"]["price"]?></span> &euro;
-					</section>
+					</section> -->
 					<form action="/<?=$_SESSION["LANG"]?>/booking" method="post" id="bookForm">
 						<?php $_SESSION["token"] = functions\string::random(12); ?>
 						<input type="hidden" id="booktoken" name="booktoken" value="<?=$_SESSION["token"]?>">
 						<input type="hidden" id="bookid" name="bookid" value="<?=$data["productGetter"]["idx"]?>">
-						<input type="hidden" id="bookprice" name="bookprice" readonly="readonly" value="<?=$data["productGetter"]["price"]?>">
-
+						
 						<input type="hidden" id="arrivaldatex" name="arrivaldatex" readonly="readonly" value="">
 
 						<input type="hidden" class="arriveDepartureSelectorValue" id="arriveDepartureSelectorValue" name="arriveDepartureSelectorValue" value="<?=date("d/m/Y", $data["productdates"][0]["checkin"])?> - <?=date("d/m/Y", $data["productdates"][0]["checkout"])?>" />						
 
-						<?php if($data["productGetter"]["tourist_points"]=="dynamic"){  ?>
-						<input type="hidden" id="bookadult" name="bookadult" value="1" />
-						<?php }else{ ?>
-						<input type="hidden" id="bookadult" name="bookadult" value="<?=(int)$data["productGetter"]["tourist_points"]?>" />
-						<?php } ?>
+						
 						<input type="hidden" id="bookchild" name="bookchild" value="0" />
 
 						<?php 
@@ -248,14 +243,25 @@ $photo = (!empty($data["productGetter"]["coverphoto"])) ? $data["productGetter"]
 					</form>
 				</section>
 				<section class="booking-box">
-					<?php if(!isset($_SESSION[Config::SESSION_PREFIX."web_username"])) : ?>
-					<section class="alert alert-warning" role="alert">
-					  <i class="fa fa-exclamation-circle" aria-hidden="true"></i>
-					  <a href="javascript:void(0)" class="signIn" data-boxtitle="Sign In">
-					  	<?=$l->translate("signin")?></a> / 
-					  <a href="javascript:void(0)" class="createAccount" data-boxtitle="Create New Account"><?=$l->translate("createnewaccount")?></a>
+					<section class="dateBox form-group">
+						<label class="col-form-label"><?=$l->translate("firstname")?></label>
+						<input type="text" class="form-control firstname" value="" />
+					</section>	
+
+					<section class="dateBox form-group">
+						<label class="col-form-label"><?=$l->translate("lastname")?></label>
+						<input type="text" class="form-control lastname" value="" />
+					</section>	
+
+					<section class="dateBox form-group">
+						<label class="col-form-label"><?=$l->translate("email")?></label>
+						<input type="text" class="form-control email" value="" />
 					</section>
-					<?php endif;?>
+
+					<section class="dateBox form-group">
+						<label class="col-form-label"><?=$l->translate("phone")?></label>
+						<input type="text" class="form-control phone" value="" />
+					</section>					
 
 					<section class="dateBox form-group">
 						<label class="col-form-label"><?=$l->translate("arrival")?></label>
@@ -386,14 +392,13 @@ $photo = (!empty($data["productGetter"]["coverphoto"])) ? $data["productGetter"]
 						<input class="form-control" type="hidden" id="children" autocomplete="off" value="0" min="0" />
 					<?php }?>
 
-					<section class="childernsAges">
-					</section>
+					<section class="childernsAges"></section>
 
-					<button class="bookNowButton"><?=$l->translate("booknow")?></button>
+					<button class="bookNowSubmit"><?=$l->translate("submit")?></button>
 
-					<button class="addFavourite buttonWithIcon" data-boxtitle="<?=$l->translate("message")?>" data-tourid="<?=$data["productGetter"]["idx"]?>">
+					<!-- <button class="addFavourite buttonWithIcon" data-boxtitle="<?=$l->translate("message")?>" data-tourid="<?=$data["productGetter"]["idx"]?>">
 						<i class="fa <?=($data["fav"]) ? "fa-heart" : "fa-heart-o"?>" aria-hidden="true"></i> <span><?=($data["fav"]) ? $l->translate("removefavourite") : $l->translate("favourite")?></span>
-					</button>
+					</button> -->
 					
 					
 					<button class="share buttonWithIcon" data-url="http://www.facebook.com/sharer.php?s=100&amp;p[title]=<?=htmlentities($data["productGetter"]["title"])?>&amp;p[url]=http://<?=$_SERVER['SERVER_NAME'].urlencode($_SERVER['REQUEST_URI'])?>&amp;p[summary]=<?=htmlentities($data["productGetter"]["title"])?>">
@@ -404,13 +409,15 @@ $photo = (!empty($data["productGetter"]["coverphoto"])) ? $data["productGetter"]
 						<i class="fa fa-twitter-square" aria-hidden="true"></i> <?=$l->translate("twitter")?>
 					</button>
 
+					<button class="share buttonWithIcon" data-url="https://www.linkedin.com/shareArticle?url=http://<?=$_SERVER['SERVER_NAME'].urlencode($_SERVER['REQUEST_URI'])?>&amp;title=<?=htmlentities($data["productGetter"]["title"])?>">
+						<i class="fa fa-linkedin-square" aria-hidden="true"></i> <?=$l->translate("linkedin")?>
+					</button>
+
 					<button class="share buttonWithIcon" data-url="https://plus.google.com/share?url=http://<?=$_SERVER['SERVER_NAME'].urlencode($_SERVER['REQUEST_URI'])?>">
 						<i class="fa fa-google-plus" aria-hidden="true"></i> <?=$l->translate("googleplus")?>
 					</button>
 
-					<button class="share buttonWithIcon" data-url="https://www.linkedin.com/shareArticle?url=http://<?=$_SERVER['SERVER_NAME'].urlencode($_SERVER['REQUEST_URI'])?>&amp;title=<?=htmlentities($data["productGetter"]["title"])?>">
-						<i class="fa fa-linkedin-square" aria-hidden="true"></i> <?=$l->translate("linkedin")?>
-					</button>
+					
 
 					
 

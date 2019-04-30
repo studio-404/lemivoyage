@@ -39,7 +39,7 @@ $photo = (isset($data["pageData"]["photo"])) ? Config::WEBSITE_.$data["pageData"
 			?>
 			<section class="col-lg-6 leftside" style="margin-bottom: 30px">
 				<section class="scaleBox">
-				<section class="price"><?=(int)$special["price"]?> &euro;</section>
+				<!-- <section class="price"><?=(int)$special["price"]?> &euro;</section> -->
 				<a href="<?=$href?>" style="background-image: url('<?=Config::WEBSITE.$_SESSION["LANG"]?>/image/loadimage?f=<?=Config::WEBSITE_.$special["photo"]?>&amp;w=680&amp;h=1200')" alt="<?=htmlentities($special["title"])?>"></a>
 				<section class="description">
 				<h3><?=functions\string::cutstatic(strip_tags($special["title"]), 25)?></h3>

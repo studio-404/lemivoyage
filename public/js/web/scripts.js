@@ -331,10 +331,10 @@ $(document).on("click", ".popupSearchbutton",function(e){
 	var title = $(".pop-title").val();
 	var destination = $(".pop-destination").val();
 	var tourtypes = $(".pop-tourtypes").val();
-	var arrival = $(".pop-arrival").val();
-	var departure = $(".pop-departure").val();
+	// var arrival = $(".pop-arrival").val();
+	// var departure = $(".pop-departure").val();
 	
-	var urlPath = Config.website + lang + "/tours/?title="+ title +"&destination=" + destination + "&tourtype=" + tourtypes + "&arrival=" + arrival + "&departure=" + departure;
+	var urlPath = Config.website + lang + "/tours/?title="+ title +"&destination=" + destination + "&tourtype=" + tourtypes;
 
 	location.href = urlPath;
 });
@@ -344,11 +344,11 @@ $(document).on("click", ".catalogpagesearch",function(e){
 	var catalogpagesearch_title = $(".catalogpagesearch_title").val();
 	var catalogpagesearch_destination = $(".catalogpagesearch_destination").val();
 	var catalogpagesearch_tourtypes = $(".catalogpagesearch_tourtypes").val();
-	var catalogpagesearch_arrival = $(".catalogpagesearch_arrival").val().replace(/\//g,"-");
-	var catalogpagesearch_departure = $(".catalogpagesearch_departure").val().replace(/\//g,"-");
-	var catalogpagesearch_range = $(".catalogpagesearch_range").val();
+	// var catalogpagesearch_arrival = $(".catalogpagesearch_arrival").val().replace(/\//g,"-");
+	// var catalogpagesearch_departure = $(".catalogpagesearch_departure").val().replace(/\//g,"-");
+	// var catalogpagesearch_range = $(".catalogpagesearch_range").val();
 	
-	var urlPath = Config.website + lang + "/tours/?title="+ catalogpagesearch_title +"&destination=" + catalogpagesearch_destination + "&tourtype=" + catalogpagesearch_tourtypes + "&arrival=" + catalogpagesearch_arrival + "&departure=" + catalogpagesearch_departure + "&price="+catalogpagesearch_range;
+	var urlPath = Config.website + lang + "/tours/?title="+ catalogpagesearch_title +"&destination=" + catalogpagesearch_destination + "&tourtype=" + catalogpagesearch_tourtypes;
 
 	location.href = urlPath;
 });
