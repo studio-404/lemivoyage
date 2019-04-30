@@ -39,6 +39,7 @@ class insertCatalog
 		$shortDescription = functions\request::index("POST","shortDescription");
 		$longDescription = functions\request::index("POST","longDescription");
 		$locations = functions\request::index("POST","locations");
+		$tourdays = functions\request::index("POST","tourdays");
 		$choosevisibiliti = functions\request::index("POST","choosevisibiliti");
 		$chooseSpecial_offer = functions\request::index("POST","chooseSpecial_offer");
 		$serialServices = unserialize(functions\request::index("POST","serialServices"));
@@ -61,6 +62,7 @@ class insertCatalog
 			'shortDescription'=>$shortDescription, 
 			'longDescription'=>$longDescription, 
 			'locations'=>$locations, 
+			'tourdays'=>$tourdays, 
 			'showwebsite'=>$choosevisibiliti, 
 			'chooseSpecial_offer'=>$chooseSpecial_offer, 
 			'lang'=>$lang, 

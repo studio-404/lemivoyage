@@ -79,15 +79,14 @@ class addCatalogForm
 		$form .= "<div class=\"coverphoto\" onclick=\"openFileManagerForProductCover(100000)\"></div>";
 
 
-		$form .= functions\makeForm::label(array(
-			"id"=>"arrivaldepartureLabel", 
-			"for"=>"arrivaldeparture", 
-			"name"=>"ჩამოსვლა-გამგზავრება ( ფორმატი: d/m/Y-d/m/Y, ... )",
-			"require"=>""
-		));
+		// $form .= functions\makeForm::label(array(
+		// 	"id"=>"arrivaldepartureLabel", 
+		// 	"for"=>"arrivaldeparture", 
+		// 	"name"=>"ჩამოსვლა-გამგზავრება ( ფორმატი: d/m/Y-d/m/Y, ... )",
+		// 	"require"=>""
+		// ));
 
-		$form .= functions\makeForm::inputText(array(
-			"placeholder"=>"მაგ: 22/01/2018-23/02/2018, 25/03/2018-25/04/2015", 
+		$form .= functions\makeForm::inputHidden(array(
 			"id"=>"arrivaldeparture", 
 			"name"=>"arrivaldeparture",
 			"value"=>""
@@ -106,6 +105,20 @@ class addCatalogForm
 			"name"=>"daysAndNights",
 			"value"=>""
 		));
+
+		$form .= functions\makeForm::label(array(
+				"id"=>"daysCount", 
+				"for"=>"tourdays", 
+				"name"=>"დღე (რაოდენობა კალენდარი)",
+				"require"=>""
+			));
+			
+			$form .= functions\makeForm::inputText(array(
+				"placeholder"=>"", 
+				"id"=>"tourdays", 
+				"name"=>"tourdays",
+				"value"=>""
+			));
 
 
 		$Database = new Database("modules", array(

@@ -212,6 +212,8 @@ $photo = (!empty($data["productGetter"]["coverphoto"])) ? $data["productGetter"]
 						<input type="hidden" id="bookid" name="bookid" value="<?=$data["productGetter"]["idx"]?>">
 						<input type="hidden" id="bookprice" name="bookprice" readonly="readonly" value="<?=$data["productGetter"]["price"]?>">
 
+						<input type="hidden" id="arrivaldatex" name="arrivaldatex" readonly="readonly" value="">
+
 						<input type="hidden" class="arriveDepartureSelectorValue" id="arriveDepartureSelectorValue" name="arriveDepartureSelectorValue" value="<?=date("d/m/Y", $data["productdates"][0]["checkin"])?> - <?=date("d/m/Y", $data["productdates"][0]["checkout"])?>" />						
 
 						<?php if($data["productGetter"]["tourist_points"]=="dynamic"){  ?>
@@ -255,19 +257,54 @@ $photo = (!empty($data["productGetter"]["coverphoto"])) ? $data["productGetter"]
 					</section>
 					<?php endif;?>
 
-					<section class="form-group" style="margin-bottom: 10px;">
+					<section class="dateBox form-group">
+						<label class="col-form-label"><?=$l->translate("arrival")?></label>
+						<input type="text" class="form-control date1 dateArrival" value="" placeholder="<?=$l->translate("arrival")?>" readonly="readonly" />
+					</section>
+
+					<section class="dateBox form-group">
+						<label class="col-form-label"><?=$l->translate("departure")?></label>
+						<input type="text" class="form-control date2 dateDeparture" value="" placeholder="<?=$l->translate("departure")?>" disabled="disabled" />
+					</section>
+
+					<script type="text/javascript">
+						var currentDay = new Date();
+						currentDay.setDate(currentDay.getDate()+<?=Config::DATEPICKER_DAYS?>);
+						var nextDay = currentDay.getDate()+"/"+(currentDay.getMonth()+1)+"/"+currentDay.getFullYear();
+						console.log(nextDay);
+
+						$(".date1").datepicker({
+							format: 'dd/mm/yyyy', 
+							startDate:nextDay,
+							autoclose: true
+						});
+
+						$('.date1').datepicker().on("changeDate", function(e) {
+							$("#arrivaldatex").val(e.target.value);
+							var th = e.target.value.split("/");
+							var theDay = new Date(th[2],(th[1]-1),th[0]);
+							theDay.setDate(theDay.getDate()+parseInt('<?=$data["productGetter"]["tourdays"]?>'));
+							var dd = (theDay.getDate()<=9) ? "0"+theDay.getDate() : theDay.getDate();
+					        var nextDay = dd+"/"+(theDay.getMonth()+1)+"/"+theDay.getFullYear();
+					        $(".date2").val(nextDay);
+					    });
+					</script>
+
+
+
+					<!-- <section class="form-group" style="margin-bottom: 10px;">
 						<label class="col-form-label"><?=$l->translate("arrivaldeparture")?></label>
 					    <select class="selectpicker arriveDepartureSelector">
 					    	<?php 
-					    	foreach ($data["productdates"] as $value) {
-					    		echo sprintf(
-					    			"<option value=\"%s - %s\">%s - %s</option>",
-					    			date("d/m/Y", $value["checkin"]),
-					    			date("d/m/Y", $value["checkout"]),
-					    			date("d/m/Y", $value["checkin"]),
-					    			date("d/m/Y", $value["checkout"])
-					    		);
-					    	}
+					    	// foreach ($data["productdates"] as $value) {
+					    	// 	echo sprintf(
+					    	// 		"<option value=\"%s - %s\">%s - %s</option>",
+					    	// 		date("d/m/Y", $value["checkin"]),
+					    	// 		date("d/m/Y", $value["checkout"]),
+					    	// 		date("d/m/Y", $value["checkin"]),
+					    	// 		date("d/m/Y", $value["checkout"])
+					    	// 	);
+					    	// }
 					    	?>
 					    </select>
 					    <script type="text/javascript">
@@ -276,7 +313,7 @@ $photo = (!empty($data["productGetter"]["coverphoto"])) ? $data["productGetter"]
 				            	$("#arriveDepartureSelectorValue").val(e.target.value);
 				            });
 					    </script>
-				    </section>
+				    </section> -->
 
 					<?php 
 					// echo print_r($data["productGetter"]);

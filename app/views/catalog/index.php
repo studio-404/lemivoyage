@@ -86,10 +86,20 @@ $photo = (isset($data["pageData"]["photo"])) ? Config::WEBSITE_.$data["pageData"
 		            	$(".pop-tourtypes").val(e.target.value);
 		            });
 
-					$(".date").datepicker({
-						format: 'dd/mm/yyyy', 
-						autoclose: true
-					});
+					// $(".date").datepicker({
+					// 	format: 'dd/mm/yyyy', 
+					// 	autoclose: true
+					// });
+
+					var currentDay = new Date();
+		            currentDay.setDate(currentDay.getDate()+<?=Config::DATEPICKER_DAYS?>);
+		            var nextDay = currentDay.getDate()+"/"+(currentDay.getMonth()+1)+"/"+currentDay.getFullYear();
+
+		            $(".date").datepicker({
+		              format: 'dd/mm/yyyy', 
+		              startDate:nextDay,
+		              autoclose: true
+		            });
 
 					/* Range Slider START */
 					var range = document.getElementById('range');

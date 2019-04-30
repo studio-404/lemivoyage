@@ -200,10 +200,11 @@ $(document).on("click", ".bookNowButtonnoLogin", function(){
 
 $(document).on("change", "#choosepayment", function(){
 	var choosepayment = $(this).val();
+	var lang = $("#lang").val();
 	if(choosepayment=="visa"){
-		$("#payoutform").attr("action", "/fr/payout");
+		$("#payoutform").attr("action", "/"+lang+"/payout");
 	}else{
-		$("#payoutform").attr("action", "/fr/paypal");
+		$("#payoutform").attr("action", "/"+lang+"/paypal");
 	}
 });
 

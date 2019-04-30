@@ -40,14 +40,14 @@ class Paypal extends Controller
 			!isset($_SESSION["payment_token"]) || 
 			functions\request::index("POST", "token") != $_SESSION["payment_token"] || 
 			!functions\request::index("POST", "tour_id") || 
-			!functions\request::index("POST", "checkinCheckout") || 
+			!functions\request::index("POST", "arrivaldatex") || 
 			!functions\request::index("POST", "adults") ||
 			functions\request::index("POST", "adults")<=0
 		){
 			functions\redirect::url(Config::WEBSITE.$_SESSION["LANG"]."/home");
 		}else{
 			$this->tour_id = functions\request::index("POST", "tour_id");
-			$this->checkinCheckout = functions\request::index("POST", "checkinCheckout");
+			$this->checkinCheckout = functions\request::index("POST", "arrivaldatex");
 			$this->adults = (int)functions\request::index("POST", "adults");
 			$this->children = (int)functions\request::index("POST", "children");
 			

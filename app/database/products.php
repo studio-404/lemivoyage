@@ -298,6 +298,7 @@ class products
 		$short_description = $args["shortDescription"];
 		$description = $args["longDescription"];
 		$location = $args["locations"];
+		$tourdays = $args["tourdays"];
 		$showwebsite = $args["showwebsite"];
 		$special_offer = $args["chooseSpecial_offer"];
 	
@@ -333,6 +334,7 @@ class products
 			`days_nights`=:days_nights, 
 			`tourist_points`=:tourist_points, 
 			`price`=:price, 
+			`tourdays`=:tourdays, 
 			`short_description`=:short_description, 
 			`description`=:description, 
 			`location`=:location, 
@@ -349,6 +351,7 @@ class products
 				":title"=>$title, 
 				":cover"=>$cover, 
 				":destination"=>$destination, 
+				":tourdays"=>$tourdays, 
 				":advanture_type"=>$advanture_type, 
 				":checkinout"=>$checkinout, 
 				":days_nights"=>$days_nights,
@@ -535,6 +538,7 @@ class products
 		$short_description = $args["shortDescription"];
 		$description = $args["longDescription"];
 		$location = $args["locations"];
+		$tourdays = $args["tourdays"];
 		
 		$showwebsite = $args["showwebsite"];
 		$special_offer = $args["chooseSpecial_offer"];
@@ -571,7 +575,7 @@ class products
 		));	
 
 		// update in all language
-		$updateShow = "UPDATE `products` SET `date`=:datex, `checkinout`=:checkinout, `coverphoto`=:cover, `destination`=:destination, `tourist_points`=:tourist_points, `price`=:price, `advanture_type`=:advanture_type, `special_offer`=:special_offer, `showwebsite`=:showwebsite, `location`=:location WHERE `idx`=:idx";
+		$updateShow = "UPDATE `products` SET `date`=:datex, `checkinout`=:checkinout, `coverphoto`=:cover, `destination`=:destination, `tourist_points`=:tourist_points, `price`=:price, `advanture_type`=:advanture_type, `tourdays`=:tourdays, `special_offer`=:special_offer, `showwebsite`=:showwebsite, `location`=:location WHERE `idx`=:idx";
 		$prepareShow = $this->conn->prepare($updateShow);
 		$prepareShow->execute(array(
 			":datex"=>$date, 
@@ -581,6 +585,7 @@ class products
 			":tourist_points"=>$tourist_points,
 			":advanture_type"=>$advanture_type,
 			":price"=>$price, 
+			":tourdays"=>$tourdays, 
 			":showwebsite"=>$showwebsite, 
 			":location"=>$location, 
 			":special_offer"=>$special_offer, 

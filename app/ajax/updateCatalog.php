@@ -38,6 +38,7 @@ class updateCatalog
 		$shortDescription = functions\request::index("POST","shortDescription");
 		$longDescription = functions\request::index("POST","longDescription");
 		$locations = functions\request::index("POST","locations");
+		$tourdays = functions\request::index("POST","tourdays");
 		
 		$showwebsite = functions\request::index("POST","choosevisibiliti");
 		$chooseSpecial_offer = functions\request::index("POST","chooseSpecial_offer");
@@ -63,6 +64,7 @@ class updateCatalog
 			'shortDescription'=>$shortDescription, 
 			'longDescription'=>$longDescription, 
 			'locations'=>$locations, 
+			'tourdays'=>$tourdays, 
 			'showwebsite'=>$showwebsite, 
 			'chooseSpecial_offer'=>$chooseSpecial_offer, 
 			'serialServices'=>$serialServices, 

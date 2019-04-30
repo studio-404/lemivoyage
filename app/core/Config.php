@@ -1,7 +1,7 @@
 <?php
 class Config
 {
-	const MIN_PHP_VERSION = "5.4.4";
+	const MIN_PHP_VERSION = "5.4.5";
 	const CHARSET = "utf-8";
 	const MAIN_CLASS = "home";
 	const MAIN_METHOD = "index";
@@ -42,4 +42,5 @@ class Config
 	const RESTRICTED_MODULE_DELETE_IDX = "74|125|177";
 	const DEFAULT_MODULE = "social";	
 	const LANG_ARRAY = "fr|en|ru"; //|en|ru
+	const DATEPICKER_DAYS = 6; //|en|ru
 }

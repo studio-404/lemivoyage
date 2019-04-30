@@ -33,6 +33,7 @@ $photo = (isset($data["pageData"]["photo"])) ? Config::WEBSITE_.$data["pageData"
 				  	<input type="hidden" name="tour_id" value="<?=(int)strip_tags(functions\request::index("POST", "bookid"))?>" />
 
 				  	<input type="hidden" name="checkinCheckout" value="<?=htmlentities($_POST["arriveDepartureSelectorValue"])?>" />
+				  	<input type="hidden" name="arrivaldatex" value="<?=htmlentities($_POST["arrivaldatex"])?>" />
 				  	
 				  	<?php 
 				  // print_r(functions\request::index("POST", "booksubservice"));

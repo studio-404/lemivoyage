@@ -111,18 +111,10 @@ class editCatalog
 				$cover
 			);
 
-			$form .= functions\makeForm::label(array(
-				"id"=>"arrivaldepartureLabel", 
-				"for"=>"arrivaldeparture", 
-				"name"=>"ჩამოსვლა-გამგზავრება ( ფორმატი: d/m/Y-d/m/Y, ... )",
-				"require"=>""
-			));
-
-			$form .= functions\makeForm::inputText(array(
-				"placeholder"=>"მაგ: 22/01/2018-23/02/2018, 25/03/2018-25/04/2015", 
+			$form .= functions\makeForm::inputHidden(array(
 				"id"=>"arrivaldeparture", 
 				"name"=>"arrivaldeparture",
-				"value"=>$output["checkinout"]
+				"value"=>""
 			));
 
 
@@ -138,6 +130,20 @@ class editCatalog
 				"id"=>"daysAndNights", 
 				"name"=>"daysAndNights",
 				"value"=>$output["days_nights"]
+			));
+
+			$form .= functions\makeForm::label(array(
+				"id"=>"daysCount", 
+				"for"=>"tourdays", 
+				"name"=>"დღე (რაოდენობა კალენდარი)",
+				"require"=>""
+			));
+			
+			$form .= functions\makeForm::inputText(array(
+				"placeholder"=>"", 
+				"id"=>"tourdays", 
+				"name"=>"tourdays",
+				"value"=>$output["tourdays"]
 			));
 
 

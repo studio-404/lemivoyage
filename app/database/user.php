@@ -138,6 +138,8 @@ class user
 		require_once("app/functions/server.php");
 		$server = new functions\server();
 
+		$email_confirm = (isset($args["email_confirm"]) && !empty($args["email_confirm"])) ? 1 : 0;
+
 		$sql = 'INSERT INTO `users_website` SET 
 		`register_date`=:register_date, 
 		`register_ip`=:register_ip, 
@@ -151,6 +153,7 @@ class user
 		`city`=:city,
 		`phone`=:phone,
 		`email_random`=:email_random,
+		`email_confirm`=:email_confirm,
 		`postcode`=:postcode
 		';
 		$prepare = $this->conn->prepare($sql);
@@ -167,6 +170,7 @@ class user
 			":city"=>$args["city"], 
 			":phone"=>$args["phone"], 
 			":email_random"=>$args["email_random"], 
+			":email_confirm"=>$email_confirm, 
 			":postcode"=>$args["postcode"] 
 		));
 		if($prepare->rowCount()){
@@ -223,6 +227,18 @@ class user
 			if($prepare->rowCount()){
 				return true;
 			}
+		}
+		return false;
+	}
+
+	private function emailConfirm2($args){		
+		$sql = 'UPDATE `users_website` SET `email_confirm`=1  WHERE `email`=:email';
+		$prepare = $this->conn->prepare($sql);
+		$prepare->execute(array(
+			":email"=>$args['email']
+		));
+		if($prepare->rowCount()){
+			return true;
 		}
 		return false;
 	}

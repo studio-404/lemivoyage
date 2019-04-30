@@ -1672,6 +1672,7 @@ var formCatalogAdd = function(catalogId, lang){
 	var longDescription = tinymce.get('longDescription').getContent();
 
 	var locations = $("#locations").val();
+	var tourdays = $("#tourdays").val();
 
 	var services = new Array();
 	$(".subServices").each(function(e){
@@ -1713,6 +1714,7 @@ var formCatalogAdd = function(catalogId, lang){
 			daysAndNights:daysAndNights, 
 			chooseTouristCount:chooseTouristCount, 
 			guests:guests, 
+			tourdays:tourdays, 
 			price:price, 
 			shortDescription:shortDescription, 
 			longDescription:longDescription, 
@@ -1832,6 +1834,7 @@ var formCatalogEdit = function(idx, lang){
 	var longDescription = tinymce.get('longDescription').getContent();
 
 	var locations = $("#locations").val();
+	var tourdays = $("#tourdays").val();
 
 	var services = new Array();
 	$(".subServices").each(function(e){
@@ -1873,6 +1876,7 @@ var formCatalogEdit = function(idx, lang){
 			daysAndNights:daysAndNights, 
 			chooseTouristCount:chooseTouristCount, 
 			guests:guests, 
+			tourdays:tourdays, 
 			price:price, 
 			shortDescription:shortDescription, 
 			longDescription:longDescription, 

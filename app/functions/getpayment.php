@@ -120,7 +120,7 @@ class getpayment
 				<td><strong>%s</strong></td>
 				<td>%s</td>
 				</tr>",
-				'ჩამოსვლა / გამგზავნრება: ',
+				'ჩამოსვლის თარიღი: ',
 				$getter['checkin_checkout']
 			); 
 

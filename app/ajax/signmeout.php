@@ -26,6 +26,9 @@ class signmeout
 
 
 		unset($_SESSION[Config::SESSION_PREFIX."web_username"]);
+		if(isset($_SESSION['fb_access_token'])){
+			unset($_SESSION['fb_access_token']);	
+		}		
 
 		$this->out = array(
 			"Error" => array(

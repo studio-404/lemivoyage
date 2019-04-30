@@ -44,6 +44,28 @@ class loadsigninform
 			"<button class=\"signinbutton\">%s</button>",
 			$l->translate("signin", $lang)
 		); 
+
+
+		/* Facebook Login Start */
+		require_once('app/_plugins/php-graph-sdk-5.x/src/Facebook/autoload.php'); 
+		$fb = new Facebook\Facebook([
+			'app_id' => '682856188581004', // Replace {app-id} with your app id
+			'app_secret' => 'e54b2128db665f011760d561d37fca6a',
+			'default_graph_version' => 'v2.2'
+		]);
+
+		$helper = $fb->getRedirectLoginHelper();
+
+		$permissions = ['email']; // Optional permissions
+		$loginUrl = $helper->getLoginUrl('https://lemivoyage.com/'.$lang.'/facebooklogin', $permissions);
+
+		$html .= sprintf(
+			"<button class=\"signinbuttonFacebook\" onclick=\"location.href = '%s'\"><i class=\"fa fa-facebook transitions\" aria-hidden=\"true\"></i>  %s</button>",
+			$loginUrl, 
+			$l->translate("facebooklogin", $lang)
+		);
+		/* Facebook Login End */
+
 		$html .= "</form>";
 
 		$html .= "<p>";
